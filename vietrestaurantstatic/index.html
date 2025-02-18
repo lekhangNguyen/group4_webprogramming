@@ -42,34 +42,6 @@
     <div class="cart-items-container" id="cart-items-container">
         <div id="cart-items"></div>
         <div id="cart-total">
-            <div class="content">
-                <h3>cart item 01</h3>
-                <div class="price">$15.99/-</div>
-            </div>
-        </div>
-        <div class="cart-items">
-            <span class="fas fa-times"></span>
-            <div class="content">
-                <h3>cart item 02</h3>
-                <div class="price">$15.99/-</div>
-            </div>
-        </div>
-        <div class="cart-items">
-            <span class="fas fa-times"></span>
-            <div class="content">
-                <h3>cart item 03</h3>
-                <div class="price">$15.99/-</div>
-            </div>
-        </div>
-        <div class="cart-items">
-            <span class="fas fa-times"></span>
-
-            <div class="content">
-                <h3>cart item 04</h3>
-                <div class="price">$15.99/-</div>
-            </div>
-        </div>
-        <div id="cart-total">
             <h3>Total Items: <span id="total-items">0</span></h3>
             <h3>Total Price: $<span id="total-price">0.00</span></h3>
         </div>
@@ -82,41 +54,7 @@
 </section>
 
 <script>
-    function showGif(event, gifId) {
-        event.preventDefault();
-        const overlay = document.getElementById(gifId);
-        overlay.style.display = 'flex';
-        const script = document.createElement('script');
-        script.src = 'https://tenor.com/embed.js';
-        script.async = true;
-        overlay.appendChild(script);
-    }
-
-    function hideGif(event) {
-        if (event.target.classList.contains('overlay')) {
-            event.target.style.display = 'none';
-        }
-    }
-
-    function showAlert(event, message) {
-        event.preventDefault();
-        alert(message);
-    }
-
-    function validateForm(event) {
-        event.preventDefault();
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const number = document.getElementById('number').value.trim();
-
-        if (name && email && number) {
-            alert('Sent!');
-        } else {
-            alert('Please fill the form');
-        }
-    }
-
-
+    // Removed functions
 </script>
 
 
@@ -168,47 +106,6 @@
 
 
 
-<!--FUNCTIONS -->
-<script>
-    
-    "forGIF"
-    function showGif(event, gifId) {
-        event.preventDefault();
-        const overlay = document.getElementById(gifId);
-        overlay.style.display = 'flex';
-        const script = document.createElement('script');
-        script.src = 'https://tenor.com/embed.js';
-        script.async = true;
-        overlay.appendChild(script);
-    }
-    "closeGIF"
-    function hideGif(event) {
-        if (event.target.classList.contains('overlay')) {
-            event.target.style.display = 'none';
-        }
-    }
-    "showAlert"
-    function showAlert(event, message) {
-        event.preventDefault();
-        alert(message);
-    }
-    "checkContactForm"
-    function validateForm(event) {
-        event.preventDefault();
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const number = document.getElementById('number').value.trim();
-
-        if (name && email && number) {
-            alert('Sent!');
-        } else {
-            alert('Fill the form');
-        }
-    }
-
-</script>
-
-
 <section class="menu" id="menu">
 
     <h1 class="heading">our <span>menu</span></h1>
@@ -219,37 +116,37 @@
             <img src="images/menu-1.jpg" alt="">
             <h3>Bun Bo Hue</h3>
             <div class="price">$15.99 <span>20.99</span></div>
-            <a href="#" class="btn" onclick="showAlert(event, 'Good choice!')">order now</a>        </div>
+            <a href="#" class="btn" onclick="addToCart(event, 'Bun Bo Hue', 15.99)">order now</a>        </div>
         
         <div class="box">
             <img src="images/menu-2.jpg" alt="">
             <h3>Com Tam</h3>
             <div class="price">$15.99 <span>20.99</span></div>
-            <a href="#" class="btn" onclick="showAlert(event, 'Are you Vietnamese!')">order now</a>        </div>
+            <a href="#" class="btn" onclick="addToCart(event, 'Com Tam', 15.99)">order now</a>        </div>
 
         <div class="box">
             <img src="images/menu-3.jpg" alt="">
             <h3>Bun Mam</h3>
             <div class="price">$15.99 <span>20.99</span></div>
-            <a href="#" class="btn" onclick="showAlert(event, 'Wise!')">order now</a>        </div>
+            <a href="#" class="btn" onclick="addToCart(event, 'Bun Mam', 15.99)">order now</a>        </div>
 
         <div class="box">
             <img src="images/menu-4.jpg" alt="">
             <h3>Banh Nam</h3>
             <div class="price">$15.99 <span>20.99</span></div>
-            <a href="#" class="btn" onclick="showAlert(event, 'Great choice!')">order now</a>        </div>
+            <a href="#" class="btn" onclick="addToCart(event, 'Banh Nam', 15.99)">order now</a>        </div>
 
         <div class="box">
             <img src="images/menu-5.jpg" alt="">
             <h3>Hu Tieu Kho</h3>
             <div class="price">$15.99 <span>20.99</span></div>
-            <a href="#" class="btn" onclick="showAlert(event, 'Local choice!')">order now</a>        </div>
+            <a href="#" class="btn" onclick="addToCart(event, 'Hu Tieu Kho', 15.99)">order now</a>        </div>
 
         <div class="box">
             <img src="images/menu-6.jpg" alt="">
             <h3>Che Thap Cam</h3>
             <div class="price">$15.99 <span>20.99</span></div>
-            <a href="#" class="btn" onclick="showAlert(event, 'You spot a gem!')">order now</a>        </div>
+            <a href="#" class="btn" onclick="addToCart(event, 'Che Thap Cam', 15.99)">order now</a>        </div>
     
     </div>
 

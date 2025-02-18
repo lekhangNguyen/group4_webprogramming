@@ -209,8 +209,12 @@ section{
     color: var(--main-color);
 }
 
-.header .cart-items-container .btn{
-    width: 100%;
+/* checkout button */
+.header .cart-items-container .btn {
+    position: bottom;
+    bottom: 20px;
+    width: calc(100% - 3rem);
+    margin: 0 1.5rem;
     text-align: center;
 }
 
