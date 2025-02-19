@@ -11,35 +11,38 @@ document.addEventListener('DOMContentLoaded', () => {
             searchForm.classList.toggle('active');
             navbar.classList.remove('active');
             cartItemsContainer.classList.remove('active');
-        }
+        };
 
         cartBtn.onclick = () => {
             cartItemsContainer.classList.toggle('active');
             navbar.classList.remove('active');
             searchForm.classList.remove('active');
-        }
+        };
 
         menuBtn.onclick = () => {
             navbar.classList.toggle('active');
             searchForm.classList.remove('active');
             cartItemsContainer.classList.remove('active');
-        }
+        };
 
         window.onscroll = () => {
             navbar.classList.remove('active');
             searchForm.classList.remove('active');
             cartItemsContainer.classList.remove('active');
-        }
+        };
     }
 
     function showGif(event, gifId) {
         event.preventDefault();
         const overlay = document.getElementById(gifId);
         overlay.style.display = 'flex';
-        const script = document.createElement('script');
-        script.src = 'https://tenor.com/embed.js';
-        script.async = true;
-        overlay.appendChild(script);
+
+        if (!document.querySelector('script[src="https://tenor.com/embed.js"]')) {
+            const script = document.createElement('script');
+            script.src = 'https://tenor.com/embed.js';
+            script.async = true;
+            overlay.appendChild(script);
+        }
     }
 
     function hideGif(event) {
@@ -133,6 +136,13 @@ document.addEventListener('DOMContentLoaded', () => {
             items.push({ name: itemName, price: itemPrice, quantity });
         });
 
+        console.log('Items to checkout:', items); // Debugging log
+
+        if (items.length === 0) {
+            alert('Your cart is empty!');
+            return;
+        }
+
         fetch('checkout.php', {
             method: 'POST',
             headers: {
@@ -142,19 +152,26 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(response => response.json())
         .then(data => {
+            console.log('Response from server:', data); // Debugging log
             if (data.success) {
                 alert('Checkout successful!');
                 cartItemsContainer.innerHTML = '';
-                updateCartTotal(-parseFloat(document.getElementById('total-price').textContent), -parseInt(document.getElementById('total-items').textContent));
+                document.getElementById('total-items').textContent = 0;
+                document.getElementById('total-price').textContent = '0.00';
             } else {
-                alert('Checkout failed. Please try again.');
+                alert('Error during checkout: ' + data.error);
             }
         })
         .catch(error => {
             console.error('Error:', error);
-            alert('Checkout failed. Please try again.');
+            alert('Something went wrong during checkout!');
         });
     }
+
+    document.getElementById('checkout-btn').addEventListener('click', function(event) {
+        event.preventDefault();
+        checkout();
+    });
 
     window.showGif = showGif;
     window.hideGif = hideGif;
