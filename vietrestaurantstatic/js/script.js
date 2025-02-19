@@ -72,19 +72,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const cartTotalItems = document.getElementById('total-items');
         const cartTotalPrice = document.getElementById('total-price');
 
-        const cartItem = document.createElement('div');
-        cartItem.classList.add('cart-items');
-        cartItem.innerHTML = `
-            <span class="fas fa-times" onclick="removeFromCart(event, ${itemPrice})"></span>
-            <div class="content">
-                <h3>${itemName}</h3>
-                <div class="price">$${itemPrice}/-</div>
-                <input type="number" value="1" min="1" class="quantity" onchange="updateCartItem(event, ${itemPrice})">
-            </div>
-        `;
-        cartItemsContainer.appendChild(cartItem);
+        let cartItem = Array.from(cartItemsContainer.children).find(item => item.querySelector('h3').textContent === itemName);
 
-        updateCartTotal(itemPrice, 1);
+        if (cartItem) {
+            const quantityInput = cartItem.querySelector('.quantity');
+            quantityInput.value = parseInt(quantityInput.value) + 1;
+            updateCartItem({ target: quantityInput }, itemPrice);
+        } else {
+            cartItem = document.createElement('div');
+            cartItem.classList.add('cart-items');
+            cartItem.innerHTML = `
+                <span class="fas fa-times" onclick="removeFromCart(event, ${itemPrice})"></span>
+                <div class="content">
+                    <h3>${itemName}</h3>
+                    <div class="price">$${itemPrice}/-</div>
+                    <input type="number" value="1" min="1" class="quantity" onchange="updateCartItem(event, ${itemPrice})">
+                </div>
+            `;
+            cartItemsContainer.appendChild(cartItem);
+            updateCartTotal(itemPrice, 1);
+        }
     }
 
     function removeFromCart(event, itemPrice) {
