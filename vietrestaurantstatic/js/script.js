@@ -74,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const cartItemsContainer = document.getElementById('cart-items');
         const cartTotalItems = document.getElementById('total-items');
         const cartTotalPrice = document.getElementById('total-price');
-
         let cartItem = Array.from(cartItemsContainer.children).find(item => item.querySelector('h3').textContent === itemName);
 
         if (cartItem) {
@@ -136,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
             items.push({ name: itemName, price: itemPrice, quantity });
         });
 
-        console.log('Items to checkout:', items); // Debugging log
+        console.log('Items to checkout:', items); // ddebugging log
 
         if (items.length === 0) {
             alert('Your cart is empty!');
@@ -152,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(response => response.json())
         .then(data => {
-            console.log('Response from server:', data); // Debugging log
+            console.log('Response from server:', data); // ddebugging log
             if (data.success) {
                 alert('Checkout successful!');
                 cartItemsContainer.innerHTML = '';

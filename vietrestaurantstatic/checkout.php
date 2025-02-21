@@ -1,8 +1,4 @@
 <?php
-header('Content-Type: application/json');
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 // Database connection
 $servername = "localhost";
 $username = "bbcap23_2";
@@ -16,7 +12,7 @@ if ($conn->connect_error) {
     exit();
 }
 
-// Read JSON input
+// rread input
 $data = json_decode(file_get_contents('php://input'), true);
 if (!$data || !isset($data['items'])) {
     echo json_encode(['success' => false, 'error' => 'Invalid data received']);
@@ -26,7 +22,7 @@ if (!$data || !isset($data['items'])) {
 $items = $data['items'];
 $order_date = date('Y-m-d H:i:s');
 
-// Insert items into the database
+// iinsert items
 foreach ($items as $item) {
     $itemName = $conn->real_escape_string($item['name']);
     $itemPrice = (float)$item['price'];
